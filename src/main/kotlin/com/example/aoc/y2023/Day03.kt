@@ -1,19 +1,21 @@
 package com.example.aoc.y2023
 
+import com.example.aoc.inputLineSequence
+
 fun main() {
     part1()
     part2()
 }
 
 private fun part1() {
-    val engineSchematic = inputLineSequence("day03.txt").toList()
+    val engineSchematic = inputLineSequence("2023/day03.txt").toList()
     findPartNumbers(engineSchematic)
         .sumOf { it.number }
         .let { println(it) }
 }
 
 private fun part2() {
-    val engineSchematic = inputLineSequence("day03.txt").toList()
+    val engineSchematic = inputLineSequence("2023/day03.txt").toList()
     val partNumbers = findPartNumbers(engineSchematic)
     val gearSymbols = engineSchematic.flatMapIndexed { lineIndex: Int, line: String ->
         line.mapIndexedNotNull { columnIndex, c -> if (c == '*') EngineGearSymbol(lineIndex, columnIndex) else null }

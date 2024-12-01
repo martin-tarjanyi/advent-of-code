@@ -1,12 +1,14 @@
 package com.example.aoc.y2023
 
+import com.example.aoc.inputLineSequence
+
 fun main() {
     part1()
     part2()
 }
 
 private fun part1() {
-    inputLineSequence("day01.txt")
+    inputLineSequence("2023/day01.txt")
         .map { line ->
             val digits = line.filter { it.isDigit() }
             "${digits.first()}${digits.last()}".toLong()
@@ -28,7 +30,7 @@ private fun part2() {
         "nine" to 9,
     )
 
-    inputLineSequence("day01.txt")
+    inputLineSequence("2023/day01.txt")
         .map { line ->
             val numbersAsStringInLineWithIndex = stringToNum.keys.flatMap {
                 listOf(

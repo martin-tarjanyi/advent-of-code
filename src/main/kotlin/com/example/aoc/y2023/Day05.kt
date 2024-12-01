@@ -1,12 +1,14 @@
 package com.example.aoc.y2023
 
+import com.example.aoc.inputLineSequence
+
 fun main() {
     part1() // 579439039
     part2() // 7873084
 }
 
 private fun part1() {
-    inputLineSequence("day05.txt").toList()
+    inputLineSequence("2023/day05.txt").toList()
         .let { parseAlmanac(it) { input -> mapSeedsForPart1(input) } }
         .findLowestSeedLocationRanges()
         .minOf { it.first }
@@ -14,7 +16,7 @@ private fun part1() {
 }
 
 private fun part2() {
-    inputLineSequence("day05.txt").toList()
+    inputLineSequence("2023/day05.txt").toList()
         .let { parseAlmanac(it) { input -> mapSeedsForPart2(input) } }
         .findLowestSeedLocationRanges()
         .minOf { it.first }

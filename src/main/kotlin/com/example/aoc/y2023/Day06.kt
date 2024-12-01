@@ -1,5 +1,7 @@
 package com.example.aoc.y2023
 
+import com.example.aoc.inputLineSequence
+
 fun main() {
     // part 1
     solve { split("\\s+".toRegex()) }
@@ -8,7 +10,7 @@ fun main() {
 }
 
 private fun solve(splitNumbers: String.() -> List<String>) {
-    inputLineSequence("day06.txt")
+    inputLineSequence("2023/day06.txt")
         .take(2)
         .toList()
         .let { lines ->

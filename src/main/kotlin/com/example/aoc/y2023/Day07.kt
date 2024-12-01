@@ -1,12 +1,14 @@
 package com.example.aoc.y2023
 
+import com.example.aoc.inputLineSequence
+
 fun main() {
     part1()
     part2()
 }
 
 private fun part1() {
-    inputLineSequence("day07.txt")
+    inputLineSequence("2023/day07.txt")
         .map { line ->
             val (cardString, bidString) = line.split(" ")
             HandForPart1(cardString, bidString.toLong())
@@ -26,7 +28,7 @@ private fun part1() {
 }
 
 private fun part2() {
-    inputLineSequence("day07.txt")
+    inputLineSequence("2023/day07.txt")
         .map { line ->
             val (cardString, bidString) = line.split(" ")
             HandForPart2(cardString, bidString.toLong())

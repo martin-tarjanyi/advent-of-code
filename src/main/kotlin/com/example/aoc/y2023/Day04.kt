@@ -1,5 +1,6 @@
 package com.example.aoc.y2023
 
+import com.example.aoc.inputLineSequence
 import kotlin.math.pow
 import kotlin.math.roundToLong
 
@@ -9,7 +10,7 @@ fun main() {
 }
 
 private fun part1() {
-    inputLineSequence("day04.txt")
+    inputLineSequence("2023/day04.txt")
         .map { parseCard(it) }
         .map { card -> card.playerWinningNumbers() }
         .map { score(it) }
@@ -18,7 +19,7 @@ private fun part1() {
 }
 
 private fun part2() {
-    val cards = inputLineSequence("day04.txt").map { parseCard(it) }
+    val cards = inputLineSequence("2023/day04.txt").map { parseCard(it) }
     val copiesWonById = cards.associate { it.id to it.playerWinningNumbers().size }
     val numberOfCardsById = cards.associate { it.id to 1 }.toMutableMap()
 

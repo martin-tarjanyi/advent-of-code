@@ -1,12 +1,14 @@
 package com.example.aoc.y2023
 
+import com.example.aoc.inputLineSequence
+
 fun main() {
     part1()
     part2()
 }
 
 private fun part1() {
-    inputLineSequence("day09.txt")
+    inputLineSequence("2023/day09.txt")
         .sumOf { line ->
             val nums = line.split(" ").map { it.toLong() }
             val sequenceHistory = sequenceHistory(nums)
@@ -24,7 +26,7 @@ private fun part1() {
 }
 
 private fun part2() {
-    inputLineSequence("day09.txt")
+    inputLineSequence("2023/day09.txt")
         .sumOf { line ->
             val nums = line.split(" ").map { it.toLong() }
             val sequenceHistory = sequenceHistory(nums)

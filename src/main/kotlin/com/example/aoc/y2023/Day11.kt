@@ -1,5 +1,8 @@
 package com.example.aoc.y2023
 
+import com.example.aoc.Position
+import com.example.aoc.createPairs
+import com.example.aoc.inputLineSequence
 import java.util.*
 import kotlin.math.abs
 
@@ -9,7 +12,7 @@ fun main() {
 }
 
 private fun part1() {
-    inputLineSequence("day11.txt")
+    inputLineSequence("2023/day11.txt")
         .map { line -> line.map { char -> char.toUniverseItem() } }
         .toList()
         .let { Universe(it).expand() }
@@ -20,7 +23,7 @@ private fun part1() {
 }
 
 private fun part2() {
-    inputLineSequence("day11.txt")
+    inputLineSequence("2023/day11.txt")
         .map { line -> line.map { char -> char.toUniverseItem() } }
         .toList()
         .let { Universe(it) }

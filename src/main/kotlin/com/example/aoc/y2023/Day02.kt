@@ -1,5 +1,7 @@
 package com.example.aoc.y2023
 
+import com.example.aoc.inputLineSequence
+
 fun main() {
     part1()
     part2()
@@ -14,7 +16,7 @@ private fun part1() {
         )
     )
 
-    inputLineSequence("day02.txt")
+    inputLineSequence("2023/day02.txt")
         .map { line -> parseGame(line) }
         .filter { game -> game.isPossibleWith(bag) }
         .sumOf { game -> game.id }
@@ -22,7 +24,7 @@ private fun part1() {
 }
 
 private fun part2() {
-    inputLineSequence("day02.txt")
+    inputLineSequence("2023/day02.txt")
         .map { line -> parseGame(line) }
         .map { game -> game.smallestPossibleBag() }
         .sumOf { bag -> bag.power() }

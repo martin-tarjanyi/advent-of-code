@@ -1,12 +1,15 @@
 package com.example.aoc.y2023
 
+import com.example.aoc.Position
+import com.example.aoc.inputLineSequence
+
 fun main() {
     part1()
     part2()
 }
 
 private fun part1() {
-    val maze = inputLineSequence("day10.txt")
+    val maze = inputLineSequence("2023/day10.txt")
         .map { line -> line.map { symbol -> Pipe.from(symbol) } }
         .toList()
         .let { Maze(it) }
@@ -19,7 +22,7 @@ private fun part1() {
 }
 
 private fun part2() {
-    val maze = inputLineSequence("day10.txt")
+    val maze = inputLineSequence("2023/day10.txt")
         .map { line -> line.map { symbol -> Pipe.from(symbol) } }
         .toList()
         .let { Maze(it) }

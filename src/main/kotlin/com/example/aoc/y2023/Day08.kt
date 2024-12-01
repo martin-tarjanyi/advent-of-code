@@ -1,5 +1,7 @@
 package com.example.aoc.y2023
 
+import com.example.aoc.inputLineSequence
+import com.example.aoc.repeat
 import java.math.BigInteger
 
 fun main() {
@@ -8,7 +10,7 @@ fun main() {
 }
 
 private fun part1() {
-    val lines = inputLineSequence("day08.txt").toList()
+    val lines = inputLineSequence("2023/day08.txt").toList()
     val instructions = lines.first().toList()
     val nodes = parseNodes(lines)
 
@@ -29,7 +31,7 @@ private fun part1() {
 }
 
 private fun part2() {
-    val lines = inputLineSequence("day08.txt").toList()
+    val lines = inputLineSequence("2023/day08.txt").toList()
     val instructions = lines.first().toList()
     val nodes = parseNodes(lines)
     val startingNodes = nodes.values.filter { it.id.endsWith("A") }.toMutableList()

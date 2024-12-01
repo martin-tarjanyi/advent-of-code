@@ -1,4 +1,4 @@
-package com.example.aoc.y2023
+package com.example.aoc
 
 import java.lang.IllegalArgumentException
 
