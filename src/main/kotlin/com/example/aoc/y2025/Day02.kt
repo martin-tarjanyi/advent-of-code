@@ -8,7 +8,8 @@ fun main() {
         .map { it.split('-').let { it[0].toLong() to it[1].toLong() } }
         .flatMap { (start, end) -> (start..end)
             .filter {
-                it.toString().isInvalidPart1()
+//                it.toString().isInvalidPart1()
+                it.toString().isInvalidPart2()
             }
         }
         .sum()
@@ -22,3 +23,10 @@ private fun String.isInvalidPart1(): Boolean {
     val sequenceLength = length / 2
     return substring(0, sequenceLength) == substring(sequenceLength)
 }
+
+private fun String.isInvalidPart2(): Boolean =
+    (1..length / 2)
+        .filter { length % it == 0 }
+        .any { sequenceLength ->
+            this == this.substring(0, sequenceLength).repeat(length / sequenceLength)
+        }
