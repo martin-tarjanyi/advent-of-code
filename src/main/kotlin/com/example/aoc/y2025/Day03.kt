@@ -28,7 +28,7 @@ private fun part2() {
         .let { println(it) }
 }
 
-fun largestNumber(num: String, digits: Int = 12): String {
+private fun largestNumber(num: String, digits: Int = 12): String {
     if (num.isEmpty() || digits == 0) {
         return ""
     }
