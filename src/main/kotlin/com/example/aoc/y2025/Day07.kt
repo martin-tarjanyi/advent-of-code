@@ -3,8 +3,8 @@ package com.example.aoc.y2025
 import com.example.aoc.inputLineSequence
 
 fun main() {
-    part1()
-//    part2()
+//    part1()
+    part2()
 }
 
 private fun part1() {
@@ -36,6 +36,39 @@ private fun part1() {
     }
 
     println(splits)
+}
+
+private fun part2() {
+    val manifold = inputLineSequence("2025/day07.txt")
+        .map { it.toList() }
+        .toList()
+
+    val startBeam = (0 to (manifold.first().indexOf('S').also { check(it != -1) }))
+        .let { Beam(it.first, it.second) }
+    val visited = mutableMapOf<Pair<Int, Int>, Long>()
+    val count = countTimelines(manifold, visited, startBeam.row, startBeam.column)
+    println(count)
+}
+
+private fun countTimelines(
+    manifold: List<List<Char>>,
+    cache: MutableMap<Pair<Int, Int>, Long>,
+    row: Int,
+    column: Int
+): Long {
+    return cache.getOrPut(row to column) {
+        val cell = manifold.getOrNull(row)?.getOrNull(column)
+        if (cell == null) {
+            1L
+        } else {
+            when (cell) {
+                '^' -> countTimelines(manifold, cache, row, column - 1) +
+                        countTimelines(manifold, cache, row, column + 1)
+                '.', 'S' -> countTimelines(manifold, cache, row + 1, column)
+                else -> error("Unexpected cell: $cell")
+            }
+        }
+    }
 }
 
 
