@@ -5,8 +5,8 @@ import kotlin.math.pow
 import kotlin.math.sqrt
 
 fun main() {
-    part1()
-//    part2()
+//    part1()
+    part2()
 }
 
 private fun part1() {
@@ -30,7 +30,7 @@ private fun part1() {
             val circuitA = circuits.find { a in it.boxes }
             val circuitB = circuits.find { b in it.boxes }
 
-            if (circuitA == circuitB) {
+            if (circuitA === circuitB) {
                 // nothing to do
             } else if (circuitA == null && circuitB == null) {
                 circuits.add(Circuit(mutableSetOf(a, b)))
@@ -51,6 +51,52 @@ private fun part1() {
         .take(3)
         .fold(1) { acc, circuit -> acc * circuit.boxes.size }
         .let { println(it) }
+}
+
+private fun part2() {
+    val junctionBoxes = inputLineSequence("2025/day08.txt")
+        .map { it ->
+            val (x, y, z) = it.split(",").map { it.toDouble() }
+            JunctionBox(x, y, z)
+        }
+        .toList()
+
+    val boxPairs = junctionBoxes.flatMapIndexed { index, box ->
+        junctionBoxes.subList(index + 1, junctionBoxes.size).map { it to box }
+    }
+
+    val circuits = junctionBoxes.map { Circuit(mutableSetOf(it)) }.toMutableList()
+
+    var lastConnection: Pair<JunctionBox, JunctionBox>? = null
+
+    boxPairs.sortedBy { (a, b) -> a.distanceTo(b) }
+        .forEach { (a, b) ->
+            val circuitA = circuits.find { a in it.boxes }
+            val circuitB = circuits.find { b in it.boxes }
+
+            if (circuitA === circuitB) {
+                // nothing to do
+            } else if (circuitA == null && circuitB == null) {
+                circuits.add(Circuit(mutableSetOf(a, b)))
+            } else if (circuitA != null && circuitB == null) {
+                circuitA.boxes.add(b)
+                lastConnection = a to b
+            } else if (circuitA == null && circuitB != null) {
+                circuitB.boxes.add(a)
+                lastConnection = a to b
+            } else if (circuitA != null && circuitB != null) {
+                circuitA.boxes.addAll(circuitB.boxes)
+                circuitB.boxes.clear()
+                circuits.removeIf { it.boxes.isEmpty() }
+                lastConnection = a to b
+            } else {
+                error("Unexpected sate")
+            }
+        }
+
+    requireNotNull(lastConnection).let {
+        println(it.first.x * it.second.x)
+    }
 }
 
 private data class JunctionBox(val x: Double, val y: Double, val z: Double) {
